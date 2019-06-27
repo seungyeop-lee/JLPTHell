@@ -4,6 +4,9 @@ package vo;
 import java.io.Serializable;
 
 public class UserForList implements Serializable {
+	
+	private static final long serialVersionUID = -992017847036196076L;
+	
 	private String id;
 	private String grade;
 	private int studyingCount;

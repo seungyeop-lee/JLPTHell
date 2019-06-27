@@ -4,6 +4,9 @@ package vo;
 import java.io.Serializable;
 
 public class UserWord implements Serializable{
+	
+	private static final long serialVersionUID = -3847914468967265259L;
+	
 	private String word;
 	private String mean;
 	private int count;
