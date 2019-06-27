@@ -2,44 +2,46 @@
 package server.manager;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionManager {
-	private static final String driver = "oracle.jdbc.driver.OracleDriver";	// JDBC driver 패키지명
-	private static final String url = "jdbc:oracle:thin:@localhost:1521:XE";	// URL
-	private static final String dbid = "jlpt";	// 데이터베이스 ID
-	private static final String dbpw = "1234";	// 데이터베이스 비밀번호
-	
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.stereotype.Component;
 
-	// JDBC 드라이버 로딩
-	static {
-		try{
-			// 문자열로 클래스를 찾는다
-			Class.forName(driver); 
-		}
-		catch (ClassNotFoundException e) {
-			e.printStackTrace();
-		}
-	}
+import config.ServerConfigration;
+
+@Component
+public class ConnectionManager {
+	
+	private static ApplicationContext context;
 
 	// 생성자를 private으로 설정한다
 	// 이유: 단 하나의 객체만 생성하고 다른 어떤 이도 이 클래스를 계속 생성할 수 없게 막기 위함
 	private ConnectionManager() {}
 		
 	/**
-	 * 드라이버 매니저로부터 Connection을 생성하여 반환한다
+	 * EmbeddedDatabase로부터 Connection을 생성하여 반환한다
 	 * @return Connection 객체
 	 */
 	public static Connection getConnection() {
+		EmbeddedDatabase embeddedDatabase = getContext().getBean(EmbeddedDatabase.class);
+		
 		Connection con = null;
 		try {
-			// 드라이버 매니저를 이용하여 연결을 시도한다
-			con = DriverManager.getConnection(url, dbid, dbpw);
+			con = embeddedDatabase.getConnection();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return con;
+	}
+
+	private static ApplicationContext getContext() {
+		if(context == null) {
+			context = new AnnotationConfigApplicationContext(ServerConfigration.class);
+		}
+		return context;
 	}
 	
 	/**
