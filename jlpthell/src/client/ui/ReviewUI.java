@@ -22,6 +22,9 @@ import client.uiManager.ReviewUIManager;
 import javax.swing.border.LineBorder;
 
 public class ReviewUI extends JFrame implements ActionListener{
+	
+	private static final long serialVersionUID = 7761082790332906571L;
+	
 	private ReviewUIManager ruim;
 	public StudyUI studyUI;
 	private ClientManager cm;

@@ -28,6 +28,9 @@ import javax.swing.border.LineBorder;
 import javax.swing.UIManager;
 
 public class MemUI extends JFrame implements ActionListener{
+	
+	private static final long serialVersionUID = 2944739448952946412L;
+	
 	private MemUIManager muim;
 	public StudyUI studyUI;
 	private ClientManager cm;

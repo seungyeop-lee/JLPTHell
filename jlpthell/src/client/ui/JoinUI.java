@@ -28,6 +28,9 @@ import vo.User;
 import java.awt.Color;
 
 public class JoinUI extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = -9076766543303495839L;
+	
 	private ConnectionUI conUI;
 	private ClientManager cm;
 	private JoinUIManager juim;

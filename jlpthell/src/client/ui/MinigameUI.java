@@ -20,6 +20,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Dimension;
 
 public class MinigameUI extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = 4108521499552753381L;
+	
 	private MinigameUIManager miniuim;
 	public MainUI mainUI;
 	private ClientManager cm;

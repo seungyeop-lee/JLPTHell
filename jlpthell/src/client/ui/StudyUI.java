@@ -20,6 +20,9 @@ import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 
 public class StudyUI extends JFrame implements ActionListener{
+	
+	private static final long serialVersionUID = -1214233929548029166L;
+	
 	private StudyUIManager suim;
 	private MainUI mainUI;
 	private ClientManager cm;

@@ -22,6 +22,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Dimension;
 
 public class UserlistUI extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = 6055733836971046129L;
+
 	private MainUI mainUI;
 	
 	private JPanel contentPane;

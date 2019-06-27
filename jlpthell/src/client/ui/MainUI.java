@@ -21,6 +21,9 @@ import client.manager.ClientManager;
 import client.uiManager.MainUIManager;
 
 public class MainUI extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = 8037085189173216574L;
+	
 	public MainUIManager muim;
 	private ClientManager cm;
 	private JPanel contentPane;

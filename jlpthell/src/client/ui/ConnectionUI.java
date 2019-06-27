@@ -25,6 +25,9 @@ import javax.swing.border.LineBorder;
 import client.uiManager.ConnectionUIManager;
 
 public class ConnectionUI extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = -3738548882712169663L;
+	
 	private ConnectionUIManager cuim = new ConnectionUIManager(this);
 	private JPanel contentPane;
 	private JTextField idTextField;

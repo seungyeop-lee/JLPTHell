@@ -18,6 +18,9 @@ import javax.swing.border.EmptyBorder;
 import client.uiManager.ChatUIManager;
 
 public class ChatUI extends JFrame {
+	
+	private static final long serialVersionUID = -4299535212898502654L;
+	
 	private ChatUIManager cuim = new ChatUIManager(this);
 	private JPanel contentPane;
 	private JTextField inputTextField;

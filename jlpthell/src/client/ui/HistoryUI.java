@@ -25,6 +25,9 @@ import javax.swing.table.AbstractTableModel;
 import java.awt.Font;
 
 public class HistoryUI extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = -8974421923484843744L;
+
 	private StudyUI studyUI;
 	
 	private JPanel contentPane;

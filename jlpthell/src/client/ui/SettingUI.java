@@ -28,6 +28,9 @@ import javax.swing.border.LineBorder;
 import java.awt.Dimension;
 
 public class SettingUI extends JFrame implements ActionListener {
+	
+	private static final long serialVersionUID = 8445101172553206392L;
+	
 	private SettingUIManager suim;
 	private MainUI mainUI;
 	private ClientManager cm;
