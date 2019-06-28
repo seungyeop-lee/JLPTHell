@@ -9,12 +9,19 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import vo.UserWord;
 
+@Repository
 public class ReviewUIServerManager {
 	
 	private String id;
 	private String grade;
+	
+	@Autowired
+	private ConnectionManager connectionManager;
 	
 	/**
 	 * Client에 학습할 단어 List를 보낸다.
@@ -31,7 +38,7 @@ public class ReviewUIServerManager {
 		ArrayList<Integer[]> studyIndexList = new ArrayList<>();
 		
 		//사용자가 기존에 학습한 단어의 index를 저장
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		try {
 			String sql = "SELECT S.WORDNO, S.SCOUNT FROM USERINFO U, STUDY S WHERE U.USERNO=S.USERNO AND U.USERID = ? AND S.GRADE = ? AND S.SCOUNT != 5";
 			PreparedStatement pstmt = con.prepareStatement(sql);
@@ -88,7 +95,7 @@ public class ReviewUIServerManager {
 	 * @param 사용자가 학습한 wordno가 담겨있는 reviewWordNo
 	 */
 	public void saveReviewWord(HashSet<Integer> reviewWordNo) {
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		String sql = "update study set scount = scount+1 where wordno = ?";
 		for(int i : reviewWordNo) {
 			try {

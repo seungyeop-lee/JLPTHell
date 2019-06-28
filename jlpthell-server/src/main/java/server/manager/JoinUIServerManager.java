@@ -5,13 +5,21 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import vo.User;
 
+@Repository
 public class JoinUIServerManager {
+	
+	@Autowired
+	private ConnectionManager connectionManager;
+	
 	//회원가입 메소드, 가입 명령 실행 결과를 boolean 값으로 반환!
 	public boolean join(User user) {
 		boolean result = false;
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		//새로운 User를 Userinfo table에 추가
 		try {
 			String sql = "insert into userinfo(userid,userpw,pwhint,grade,insertdate,USERNO) values(?,?,?,?,sysdate,SEQ_USERNO.NEXTVAL)";

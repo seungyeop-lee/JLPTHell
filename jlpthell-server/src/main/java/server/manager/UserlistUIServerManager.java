@@ -7,9 +7,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import vo.UserForList;
 
+@Repository
 public class UserlistUIServerManager {
+	
+	@Autowired
+	private ConnectionManager connectionManager;
 	
 	//현재 가입 중인 유저 정보 획득, 유저정보를 답은 ArrayList로 반환
 	public ArrayList<UserForList> userList() {
@@ -18,7 +25,7 @@ public class UserlistUIServerManager {
 		ArrayList<String> userGradeList = new ArrayList<>();
 		ArrayList<Integer> userStudyingNumList = new ArrayList<>(); 
 		ArrayList<Integer> userStudiedNumList = new ArrayList<>();
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		
 		//가입되어있는 회원의 목록 검색
 		try {

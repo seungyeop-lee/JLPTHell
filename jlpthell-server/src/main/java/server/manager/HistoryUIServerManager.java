@@ -8,15 +8,22 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import vo.UserWord;
 
+@Repository
 public class HistoryUIServerManager {
+	
+	@Autowired
+	private ConnectionManager connectionManager;
 	
 	//현재 사용자의 학습 이력 검색 메소드, 학습 이력을 UserWord객체에 담고, arraylist에 넣어서 반환
 	public ArrayList<UserWord> userWordList(String id) {
 		ArrayList<UserWord> result = new ArrayList<>();
 		HashSet<Integer[]> wordNoList = new HashSet<>();
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		String grade = null;
 		
 		//사용자가 학습한 이력 검색

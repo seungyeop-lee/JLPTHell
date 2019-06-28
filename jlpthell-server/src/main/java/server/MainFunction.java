@@ -10,6 +10,11 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashSet;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Service;
+
 import server.manager.ConnectionUIServerManager;
 import server.manager.HistoryUIServerManager;
 import server.manager.JoinUIServerManager;
@@ -22,6 +27,8 @@ import vo.User;
 import vo.UserForList;
 import vo.UserWord;
 
+@Service
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class MainFunction implements Runnable {
 	private ServerThread st;
 	private Socket s;
@@ -29,14 +36,14 @@ public class MainFunction implements Runnable {
 	private OutputStream nos;
 	private ObjectInputStream nois;
 	private ObjectOutputStream noos;
-	private JoinUIServerManager juism = new JoinUIServerManager();
-	private ConnectionUIServerManager cuism = new ConnectionUIServerManager();
-	private UserlistUIServerManager uuism = new UserlistUIServerManager();
-	private SettingUIServerManager suism = new SettingUIServerManager();
-	private HistoryUIServerManager huism = new HistoryUIServerManager();
-	private MemUIServerManager muism = new MemUIServerManager();
-	private ReviewUIServerManager ruism = new ReviewUIServerManager();
-	private MiniGameUIServerManager miniuism = new MiniGameUIServerManager();
+	@Autowired private JoinUIServerManager juism;
+	@Autowired private ConnectionUIServerManager cuism;
+	@Autowired private UserlistUIServerManager uuism;
+	@Autowired private SettingUIServerManager suism;
+	@Autowired private HistoryUIServerManager huism;
+	@Autowired private MemUIServerManager muism;
+	@Autowired private ReviewUIServerManager ruism;
+	@Autowired private MiniGameUIServerManager miniuism;
 	
 	
 	public MainFunction(Socket s, ServerThread st) {

@@ -6,6 +6,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+@Controller
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class ServerThread implements Runnable {
 
 	private MainFunction mf;
@@ -27,7 +33,7 @@ public class ServerThread implements Runnable {
 	//MainFunction을 Thread로 실행
 	@Override
 	public void run() {
-		mf = new MainFunction(mainSocket, this);
+		mf = ServerMain.context.getBean(MainFunction.class, mainSocket, this);
 		Thread mft = new Thread(mf);
 		mft.start();
 		System.out.println("[INFO] Thread 실행 완료(MainFunction)");
@@ -43,7 +49,7 @@ public class ServerThread implements Runnable {
 			System.out.println("[INFO] Client 접속 성공(Chat)");
 			
 			//채팅용 객체 생성 및 Thread로 실행
-			cf = new ChatFunction(chatSocket, this);
+			cf = ServerMain.context.getBean(ChatFunction.class, chatSocket, this);
 			Thread cft = new Thread(cf);
 			cft.start();
 		} catch (IOException e) {

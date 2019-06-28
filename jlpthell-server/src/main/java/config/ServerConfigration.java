@@ -15,10 +15,10 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 
-import server.manager.ConnectionManager;
+import server.ServerMain;
 
 @Configuration
-@ComponentScan(basePackageClasses = ConnectionManager.class)
+@ComponentScan(basePackageClasses = ServerMain.class)
 public class ServerConfigration {
 	
 	/**

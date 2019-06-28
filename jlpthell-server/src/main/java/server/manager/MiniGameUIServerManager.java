@@ -9,9 +9,17 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Random;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
 import vo.UserWord;
 
+@Repository
 public class MiniGameUIServerManager {
+	
+	@Autowired
+	private ConnectionManager connectionManager;
+	
 	/**
 	 * 학습한 단어 중 미니게임에서 사용 할 단어 검색 및 반환
 	 * @param 사용자의 id
@@ -24,7 +32,7 @@ public class MiniGameUIServerManager {
 		HashSet<Integer> gameIndexList = new HashSet<>();
 		
 		//사용자가 기존에 학습한 단어의 index를 저장
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		try {
 			String sql = "SELECT S.WORDNO FROM USERINFO U, STUDY S WHERE U.USERNO=S.USERNO AND U.USERID = ? AND S.GRADE = ?";
 			PreparedStatement pstmt = con.prepareStatement(sql);

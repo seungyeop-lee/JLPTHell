@@ -6,7 +6,13 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
+import config.ServerConfigration;
+
 public class ServerMain {
+	public static ApplicationContext context;
 	private int mainPort = 8888;
 	private int chatPort = 8889;
 	private ServerSocket mainSS;
@@ -25,7 +31,7 @@ public class ServerMain {
 				System.out.println("[INFO] Client 접속 성공(Main)");
 				
 				//Socket을 가지고 있는 Thread 생성
-				ServerThread thread = new ServerThread(mainSocket, chatSS, stList);
+				ServerThread thread = context.getBean(ServerThread.class, mainSocket, chatSS, stList);
 				stList.add(thread);
 				Thread t = new Thread(thread);
 				t.start();
@@ -41,6 +47,7 @@ public class ServerMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		context = new AnnotationConfigApplicationContext(ServerConfigration.class);
 		new ServerMain();
 	}
 }

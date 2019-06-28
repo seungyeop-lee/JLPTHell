@@ -6,11 +6,18 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+@Repository
 public class ConnectionUIServerManager {
+	
+	@Autowired
+	private ConnectionManager connectionManager;
 	
 	//password hint 반환 메소드, password hint를 String으로 반환
 	public String pwHint(String id) {
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		String result = null;
 		//사용자에게 받은 id로 db를 검색하여 password Hint를 찾음
 		//없는 id라면 null값을 반환
@@ -30,7 +37,7 @@ public class ConnectionUIServerManager {
 	
 	//login 메소드
 	public String login(String[] loginInfo) {
-		Connection con = ConnectionManager.getConnection();
+		Connection con = connectionManager.getConnection();
 		String result = null;
 		//loginInfo에 들어있는 id와 pw를 db에서 확인하여 login 유무 확인
 		//loginInfo[0] == String id, loginInfo[1] == String pw
