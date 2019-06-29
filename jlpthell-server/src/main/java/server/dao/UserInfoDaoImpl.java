@@ -49,11 +49,15 @@ public class UserInfoDaoImpl implements UserInfoDao {
 		String sql = "insert into userinfo(userid,userpw,pwhint,grade,insertdate,USERNO) " +
 				"values(?,?,?,?,sysdate,SEQ_USERNO.NEXTVAL)";
 
-		return jdbcTemplate.update(sql,
-				userInfo.getUserid(),
-				userInfo.getUserpw(),
-				userInfo.getPwhint(),
-				userInfo.getGrade());
+		try {
+			return jdbcTemplate.update(sql,
+					userInfo.getUserid(),
+					userInfo.getUserpw(),
+					userInfo.getPwhint(),
+					userInfo.getGrade());
+		} catch (Exception e) {
+			return 0;
+		}
 	}
 	
 	@Override

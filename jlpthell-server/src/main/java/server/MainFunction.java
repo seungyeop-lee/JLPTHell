@@ -16,13 +16,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import server.manager.HistoryUIServerManager;
-import server.manager.JoinUIServerManager;
 import server.manager.MemUIServerManager;
 import server.manager.MiniGameUIServerManager;
 import server.manager.ReviewUIServerManager;
 import server.manager.SettingUIServerManager;
 import server.manager.UserlistUIServerManager;
 import server.service.ConnectionUIService;
+import server.service.JoinUIService;
 import server.vo.User;
 import server.vo.UserForList;
 import server.vo.UserWord;
@@ -36,7 +36,7 @@ public class MainFunction implements Runnable {
 	private OutputStream nos;
 	private ObjectInputStream nois;
 	private ObjectOutputStream noos;
-	@Autowired private JoinUIServerManager juism;
+	@Autowired private JoinUIService juis;
 	@Autowired private ConnectionUIService cuis;
 	@Autowired private UserlistUIServerManager uuism;
 	@Autowired private SettingUIServerManager suism;
@@ -78,7 +78,7 @@ public class MainFunction implements Runnable {
 				Object content = readObjects[1];
 				switch(command) {
 				case "joinui.join":
-					boolean joinResult = juism.join((User)content);
+					boolean joinResult = juis.join((User)content);
 					noos.writeObject(joinResult);
 					break;
 				case "conui.pwHint":
