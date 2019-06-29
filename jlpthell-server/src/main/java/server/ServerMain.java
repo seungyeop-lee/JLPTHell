@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 
+import org.hsqldb.util.DatabaseManagerSwing;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -48,6 +50,16 @@ public class ServerMain {
 	 */
 	public static void main(String[] args) {
 		context = new AnnotationConfigApplicationContext(ServerConfigration.class);
+		startDBViewer(args);
 		new ServerMain();
+	}
+	
+	private static void startDBViewer(String[] args) {
+		if(Arrays.asList(args).contains("dbview")) {
+			DatabaseManagerSwing.main(new String[] {
+					"--url", "jdbc:hsqldb:mem:testdb", 
+					"--user", "sa", 
+					"--password", ""});
+		}
 	}
 }

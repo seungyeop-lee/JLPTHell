@@ -1,19 +1,24 @@
 package server.config;
 
+import javax.sql.DataSource;
+
 import org.hsqldb.jdbc.JDBCDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.jdbc.datasource.embedded.*;
+import org.springframework.jdbc.datasource.embedded.ConnectionProperties;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseConfigurer;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory;
+import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
-import server.ServerMain;
 
-import javax.sql.DataSource;
+import server.ServerMain;
 
 @Configuration
 @ComponentScan(basePackageClasses = ServerMain.class)
@@ -42,7 +47,7 @@ public class ServerConfigration {
 		return new EmbeddedDatabaseConfigurer() {
 			@Override
 			public void configureConnectionProperties(ConnectionProperties properties, String databaseName) {
-				properties.setUrl("jdbc:hsqldb:hsql://localhost/testdb;sql.syntax_ora=true");
+				properties.setUrl("jdbc:hsqldb:mem:testdb;sql.syntax_ora=true");
 				properties.setUsername("sa");
 				properties.setPassword("");
 				properties.setDriverClass(JDBCDriver.class);
