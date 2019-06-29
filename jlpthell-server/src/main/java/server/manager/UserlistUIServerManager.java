@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import server.vo.UserForList;
+import vo.UserForList;
 
 @Repository
 public class UserlistUIServerManager {

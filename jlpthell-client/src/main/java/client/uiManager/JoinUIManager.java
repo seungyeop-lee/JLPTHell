@@ -2,7 +2,7 @@
 package client.uiManager;
 
 import client.manager.ClientManager;
-import client.vo.User;
+import vo.User;
 
 public class JoinUIManager {
 	private ClientManager cm;

@@ -21,7 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import server.config.ServerConfigration;
 import server.dao.UserInfoDao;
 import server.dto.UserInfo;
-import server.vo.User;
+import vo.User;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ServerConfigration.class)

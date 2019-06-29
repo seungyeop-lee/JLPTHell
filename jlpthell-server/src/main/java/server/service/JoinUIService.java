@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 
 import server.dao.UserInfoDao;
 import server.dto.UserInfo;
-import server.vo.User;
+import vo.User;
 
 @Service
 public class JoinUIService {

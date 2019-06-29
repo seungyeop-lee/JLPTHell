@@ -19,7 +19,7 @@ import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
 
-import client.vo.UserForList;
+import vo.UserForList;
 
 import java.awt.Dimension;
 

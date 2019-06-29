@@ -1,5 +1,5 @@
 //유저가 학습 한 정보 vo
-package client.vo;
+package vo;
 
 import java.io.Serializable;
 

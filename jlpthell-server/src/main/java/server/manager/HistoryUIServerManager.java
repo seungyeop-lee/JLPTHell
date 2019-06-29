@@ -11,7 +11,7 @@ import java.util.HashSet;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import server.vo.UserWord;
+import vo.UserWord;
 
 @Repository
 public class HistoryUIServerManager {

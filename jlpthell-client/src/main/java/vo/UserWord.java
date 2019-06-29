@@ -1,5 +1,5 @@
 //유저가 학습 한 또는 학습 할 단어 vo
-package server.vo;
+package vo;
 
 import java.io.Serializable;
 

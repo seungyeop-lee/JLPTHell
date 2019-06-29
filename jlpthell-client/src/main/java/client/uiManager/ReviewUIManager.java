@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import client.manager.ClientManager;
 import client.ui.ReviewUI;
-import client.vo.UserWord;
+import vo.UserWord;
 
 public class ReviewUIManager {
 	private int reviewCount;

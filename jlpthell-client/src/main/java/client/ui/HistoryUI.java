@@ -21,7 +21,7 @@ import java.awt.Dimension;
 import javax.swing.border.LineBorder;
 import javax.swing.table.AbstractTableModel;
 
-import client.vo.UserWord;
+import vo.UserWord;
 
 import java.awt.Font;
 

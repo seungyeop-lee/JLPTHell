@@ -24,7 +24,7 @@ import javax.swing.border.EmptyBorder;
 
 import client.manager.ClientManager;
 import client.uiManager.JoinUIManager;
-import client.vo.User;
+import vo.User;
 
 import java.awt.Color;
 

@@ -1,5 +1,5 @@
 //User 정보 vo
-package client.vo;
+package vo;
 
 import java.io.Serializable;
 

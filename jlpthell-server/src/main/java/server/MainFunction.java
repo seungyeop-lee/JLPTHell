@@ -23,9 +23,9 @@ import server.manager.SettingUIServerManager;
 import server.manager.UserlistUIServerManager;
 import server.service.ConnectionUIService;
 import server.service.JoinUIService;
-import server.vo.User;
-import server.vo.UserForList;
-import server.vo.UserWord;
+import vo.User;
+import vo.UserForList;
+import vo.UserWord;
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
