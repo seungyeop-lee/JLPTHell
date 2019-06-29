@@ -1,26 +1,30 @@
 package server.config;
 
-import javax.sql.DataSource;
-
 import org.hsqldb.jdbc.JDBCDriver;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.DefaultResourceLoader;
-import org.springframework.jdbc.datasource.embedded.ConnectionProperties;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabase;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseConfigurer;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactory;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.jdbc.datasource.embedded.*;
 import org.springframework.jdbc.datasource.init.DatabasePopulator;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
-
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 import server.ServerMain;
+
+import javax.sql.DataSource;
 
 @Configuration
 @ComponentScan(basePackageClasses = ServerMain.class)
+@EnableTransactionManagement
 public class ServerConfigration {
 	
+	@Bean
+	public PlatformTransactionManager transactionManager() {
+		return new DataSourceTransactionManager(embeddedDatabase());
+	}
+
 	/**
 	 * 내장 데이터베이스의 DataSource
 	 */

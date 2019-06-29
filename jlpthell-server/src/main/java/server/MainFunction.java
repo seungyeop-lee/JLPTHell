@@ -15,7 +15,6 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import server.manager.ConnectionUIServerManager;
 import server.manager.HistoryUIServerManager;
 import server.manager.JoinUIServerManager;
 import server.manager.MemUIServerManager;
@@ -23,6 +22,7 @@ import server.manager.MiniGameUIServerManager;
 import server.manager.ReviewUIServerManager;
 import server.manager.SettingUIServerManager;
 import server.manager.UserlistUIServerManager;
+import server.service.ConnectionUIService;
 import server.vo.User;
 import server.vo.UserForList;
 import server.vo.UserWord;
@@ -37,7 +37,7 @@ public class MainFunction implements Runnable {
 	private ObjectInputStream nois;
 	private ObjectOutputStream noos;
 	@Autowired private JoinUIServerManager juism;
-	@Autowired private ConnectionUIServerManager cuism;
+	@Autowired private ConnectionUIService cuis;
 	@Autowired private UserlistUIServerManager uuism;
 	@Autowired private SettingUIServerManager suism;
 	@Autowired private HistoryUIServerManager huism;
@@ -82,13 +82,13 @@ public class MainFunction implements Runnable {
 					noos.writeObject(joinResult);
 					break;
 				case "conui.pwHint":
-					String pwHintResult = cuism.pwHint((String)content);
+					String pwHintResult = cuis.pwHint((String)content);
 					noos.writeObject(pwHintResult);
 					break;
 				case "conui.login":
 					boolean loginResult = false;
 					String[] loginInfo = (String[])content;
-					String userGrade = cuism.login(loginInfo);
+					String userGrade = cuis.login(loginInfo);
 					if(userGrade != null) {
 						st.setId(loginInfo[0]);
 						st.setGrade(userGrade);
