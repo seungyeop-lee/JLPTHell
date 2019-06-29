@@ -15,12 +15,13 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
-import vo.UserWord;
 import java.awt.Color;
 import java.awt.Dimension;
 
 import javax.swing.border.LineBorder;
 import javax.swing.table.AbstractTableModel;
+
+import client.vo.UserWord;
 
 import java.awt.Font;
 

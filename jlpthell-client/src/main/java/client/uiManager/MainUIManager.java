@@ -11,7 +11,7 @@ import client.ui.MinigameUI;
 import client.ui.SettingUI;
 import client.ui.StudyUI;
 import client.ui.UserlistUI;
-import vo.UserForList;
+import client.vo.UserForList;
 
 public class MainUIManager {
 	private MainUI mainUI;

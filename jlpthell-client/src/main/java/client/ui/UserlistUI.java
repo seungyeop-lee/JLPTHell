@@ -15,10 +15,12 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 
-import vo.UserForList;
 import java.awt.Color;
 import java.awt.Font;
 import javax.swing.border.LineBorder;
+
+import client.vo.UserForList;
+
 import java.awt.Dimension;
 
 public class UserlistUI extends JFrame implements ActionListener {

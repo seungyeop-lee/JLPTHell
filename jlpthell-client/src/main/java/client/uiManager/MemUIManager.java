@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import client.manager.ClientManager;
 import client.ui.MemUI;
-import vo.UserWord;
+import client.vo.UserWord;
 
 public class MemUIManager {
 	private int studyCount;

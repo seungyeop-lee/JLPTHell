@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import config.ServerConfigration;
+import server.config.ServerConfigration;
 
 public class ServerMain {
 	public static ApplicationContext context;

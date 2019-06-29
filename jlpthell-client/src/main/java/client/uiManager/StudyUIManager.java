@@ -8,7 +8,7 @@ import client.ui.HistoryUI;
 import client.ui.MemUI;
 import client.ui.ReviewUI;
 import client.ui.StudyUI;
-import vo.UserWord;
+import client.vo.UserWord;
 
 public class StudyUIManager {
 

@@ -24,7 +24,8 @@ import javax.swing.border.EmptyBorder;
 
 import client.manager.ClientManager;
 import client.uiManager.JoinUIManager;
-import vo.User;
+import client.vo.User;
+
 import java.awt.Color;
 
 public class JoinUI extends JFrame implements ActionListener {

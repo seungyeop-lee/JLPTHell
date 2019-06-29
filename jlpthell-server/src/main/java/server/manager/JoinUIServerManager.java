@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import vo.User;
+import server.vo.User;
 
 @Repository
 public class JoinUIServerManager {

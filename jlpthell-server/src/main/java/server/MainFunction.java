@@ -23,9 +23,9 @@ import server.manager.MiniGameUIServerManager;
 import server.manager.ReviewUIServerManager;
 import server.manager.SettingUIServerManager;
 import server.manager.UserlistUIServerManager;
-import vo.User;
-import vo.UserForList;
-import vo.UserWord;
+import server.vo.User;
+import server.vo.UserForList;
+import server.vo.UserWord;
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
