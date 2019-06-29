@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -16,13 +17,13 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import server.manager.HistoryUIServerManager;
-import server.manager.MemUIServerManager;
 import server.manager.MiniGameUIServerManager;
 import server.manager.ReviewUIServerManager;
 import server.manager.SettingUIServerManager;
 import server.manager.UserlistUIServerManager;
 import server.service.ConnectionUIService;
 import server.service.JoinUIService;
+import server.service.MemUIService;
 import vo.User;
 import vo.UserForList;
 import vo.UserWord;
@@ -41,7 +42,7 @@ public class MainFunction implements Runnable {
 	@Autowired private UserlistUIServerManager uuism;
 	@Autowired private SettingUIServerManager suism;
 	@Autowired private HistoryUIServerManager huism;
-	@Autowired private MemUIServerManager muism;
+	@Autowired private MemUIService muis;
 	@Autowired private ReviewUIServerManager ruism;
 	@Autowired private MiniGameUIServerManager miniuism;
 	
@@ -128,11 +129,11 @@ public class MainFunction implements Runnable {
 					noos.writeObject(userWordListResult);
 					break;
 				case "memui.getstudyword":
-					ArrayList<UserWord> getStudyWordResult = muism.getStudyWord(st.getId(), st.getGrade());
+					List<UserWord> getStudyWordResult = muis.getStudyWord(st.getId(), st.getGrade());
 					noos.writeObject(getStudyWordResult);
 					break;
 				case "memui.sendstudyword":
-					muism.saveStudyWord((HashSet<Integer>)content);
+					muis.saveStudyWord((HashSet<Integer>)content, st.getId());
 					noos.writeObject(null);
 					break;
 				case "reviewui.getreviewword":
