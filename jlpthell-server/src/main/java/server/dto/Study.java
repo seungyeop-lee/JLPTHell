@@ -14,6 +14,10 @@ public class Study {
 		this(userno, null, 0, null);
 	}
 
+	public Study(int userno, String grade) {
+		this(userno, grade, 0, null);
+	}
+	
 	public Study(int userno, String grade, int wordno, String scount) {
 		this.userno = userno;
 		this.grade = grade;

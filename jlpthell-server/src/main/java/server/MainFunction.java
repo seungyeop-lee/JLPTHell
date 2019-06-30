@@ -19,11 +19,11 @@ import org.springframework.stereotype.Service;
 import server.manager.HistoryUIServerManager;
 import server.manager.MiniGameUIServerManager;
 import server.manager.ReviewUIServerManager;
-import server.manager.SettingUIServerManager;
 import server.manager.UserlistUIServerManager;
 import server.service.ConnectionUIService;
 import server.service.JoinUIService;
 import server.service.MemUIService;
+import server.service.SettingUIService;
 import vo.User;
 import vo.UserForList;
 import vo.UserWord;
@@ -40,7 +40,7 @@ public class MainFunction implements Runnable {
 	@Autowired private JoinUIService juis;
 	@Autowired private ConnectionUIService cuis;
 	@Autowired private UserlistUIServerManager uuism;
-	@Autowired private SettingUIServerManager suism;
+	@Autowired private SettingUIService suis;
 	@Autowired private HistoryUIServerManager huism;
 	@Autowired private MemUIService muis;
 	@Autowired private ReviewUIServerManager ruism;
@@ -110,18 +110,18 @@ public class MainFunction implements Runnable {
 					noos.writeObject(userListResult);
 					break;
 				case "settingui.changegrade":
-					int changeGradeResult = suism.changeGrade(st.getId(), (String)content);
+					int changeGradeResult = suis.changeGrade(st.getId(), (String)content);
 					if(changeGradeResult == 1) {
 						st.setGrade((String)content);
 					}
 					noos.writeObject(changeGradeResult);
 					break;
 				case "settingui.initialize":
-					boolean iniResult = suism.initialize(st.getId(), st.getGrade());
+					boolean iniResult = suis.initialize(st.getId(), st.getGrade());
 					noos.writeObject(iniResult);
 					break;
 				case "settingui.deleteuser":
-					boolean deleteUserResult = suism.deleteUser(st.getId());
+					boolean deleteUserResult = suis.deleteUser(st.getId());
 					noos.writeObject(deleteUserResult);
 					break;
 				case "historyui.userwordlist":

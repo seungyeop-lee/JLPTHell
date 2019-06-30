@@ -61,6 +61,32 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 	
 	@Override
+	public int updateUser(UserInfo userInfo) {
+		String sql = "update userinfo set userpw = ?, pwhint = ?, grade = ? "
+				+ "where userid = ?";
+		try {
+			return jdbcTemplate.update(sql,
+					userInfo.getUserpw(),
+					userInfo.getPwhint(), 
+					userInfo.getGrade(),
+					userInfo.getUserid()); 
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	
+	@Override
+	public int deleteUser(UserInfo userInfo) {
+		String sql = "delete from userinfo where userid = ?";
+		
+		try {
+			return jdbcTemplate.update(sql, userInfo.getUserid());
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+	
+	@Override
 	public List<UserInfo> findAll() {
 		String sql = "select * from userinfo";
 		

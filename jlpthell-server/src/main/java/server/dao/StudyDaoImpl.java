@@ -56,6 +56,19 @@ public class StudyDaoImpl implements StudyDao {
 			return 0;
 		}
 	}
+	
+	@Override
+	public int deleteStudy(Study study) {
+		String sql = "delete study where userno = ? and grade = ?";
+		
+		try {
+			return jdbcTemplate.update(sql, 
+					study.getUserno(), 
+					study.getGrade());
+		} catch (Exception e) {
+			return 0;
+		}
+	}
 
 	@Override
 	public List<Study> findAll() {
