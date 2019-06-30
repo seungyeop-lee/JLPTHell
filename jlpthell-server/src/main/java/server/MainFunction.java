@@ -1,32 +1,23 @@
 //client에서 받은 명령을 해석하여 각 ServerManager에 명령을 전달
 package server;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.OutputStream;
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-
 import server.manager.HistoryUIServerManager;
 import server.manager.MiniGameUIServerManager;
 import server.manager.ReviewUIServerManager;
-import server.manager.UserlistUIServerManager;
-import server.service.ConnectionUIService;
-import server.service.JoinUIService;
-import server.service.MemUIService;
-import server.service.SettingUIService;
+import server.service.*;
 import vo.User;
 import vo.UserForList;
 import vo.UserWord;
+
+import java.io.*;
+import java.net.Socket;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 
 @Service
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
@@ -39,7 +30,7 @@ public class MainFunction implements Runnable {
 	private ObjectOutputStream noos;
 	@Autowired private JoinUIService juis;
 	@Autowired private ConnectionUIService cuis;
-	@Autowired private UserlistUIServerManager uuism;
+	@Autowired private UserlistUIService uuis;
 	@Autowired private SettingUIService suis;
 	@Autowired private HistoryUIServerManager huism;
 	@Autowired private MemUIService muis;
@@ -106,7 +97,7 @@ public class MainFunction implements Runnable {
 					noos.writeObject(chatStartResult);
 					break;
 				case "userlistui.userlist":
-					ArrayList<UserForList> userListResult = uuism.userList();
+					ArrayList<UserForList> userListResult = uuis.userList();
 					noos.writeObject(userListResult);
 					break;
 				case "settingui.changegrade":
