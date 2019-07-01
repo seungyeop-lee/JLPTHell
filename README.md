@@ -22,7 +22,6 @@
 
 ## 실행 방법
 
-- font폴더에 있는 font를 설치(일본어 지원을 위한 폰트)
 - clone 또는 다운로드를 받는다.
 - `jlpthell-server`에 `server.ServerMain`클래스의 main메소드를 실행한다.
 - `jlpthell-client`에 `client.ClientMain`클래스의 main메소드를 실행한다.
