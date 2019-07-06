@@ -56,11 +56,26 @@ public class StudyDaoImpl implements StudyDao {
 			return 0;
 		}
 	}
-	
+
+	@Override
+	public int updateStudy(Study study) {
+		String sql = "update study set scount = ? where wordno = ? and grade = ? and userno = ?";
+
+		try {
+			return jdbcTemplate.update(sql,
+					study.getScount(),
+					study.getWordno(),
+					study.getGrade(),
+					study.getUserno());
+		} catch (Exception e) {
+			return 0;
+		}
+	}
+
 	@Override
 	public int deleteStudy(Study study) {
 		String sql = "delete study where userno = ? and grade = ?";
-		
+
 		try {
 			return jdbcTemplate.update(sql, 
 					study.getUserno(), 

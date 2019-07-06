@@ -53,6 +53,39 @@ public class StudyDaoImplTest {
     	List<Study> studies = dao.findAll();
     	assertThat(studies.size(), is(2));
 	}
+
+	@Test
+	public void updateStudy() {
+		int updated = dao.updateStudy(s1);
+		assertThat(updated, is(0));
+
+		dao.addStudy(s1);
+		dao.addStudy(s2);
+
+		s1.setScount("1");
+		updated = dao.updateStudy(s1);
+		assertThat(updated, is(1));
+
+		checkSameStudy(dao.findStudy(new Study(s1.getUserno())).get(0), s1);
+
+	}
+
+	@Test
+	public void deleteStudy() {
+		int updated = dao.deleteStudy(s1);
+		assertThat(updated, is(0));
+
+		assertThat(dao.findAll().size(), is(0));
+		dao.addStudy(s1);
+		dao.addStudy(s2);
+		assertThat(dao.findAll().size(), is(2));
+		updated = dao.deleteStudy(s1);
+		assertThat(updated, is(1));
+		assertThat(dao.findAll().size(), is(1));
+		updated = dao.deleteStudy(s2);
+		assertThat(updated, is(1));
+		assertThat(dao.findAll().size(), is(0));
+	}
 	
 	@Test
     public void findAll() {

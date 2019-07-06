@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import server.manager.HistoryUIServerManager;
 import server.manager.MiniGameUIServerManager;
-import server.manager.ReviewUIServerManager;
 import server.service.*;
 import vo.User;
 import vo.UserForList;
@@ -34,7 +33,7 @@ public class MainFunction implements Runnable {
 	@Autowired private SettingUIService suis;
 	@Autowired private HistoryUIServerManager huism;
 	@Autowired private MemUIService muis;
-	@Autowired private ReviewUIServerManager ruism;
+	@Autowired private ReviewUIService ruis;
 	@Autowired private MiniGameUIServerManager miniuism;
 	
 	
@@ -128,11 +127,11 @@ public class MainFunction implements Runnable {
 					noos.writeObject(null);
 					break;
 				case "reviewui.getreviewword":
-					ArrayList<UserWord> getReviewWordResult = ruism.getReviewWord(st.getId(), st.getGrade());
+					List<UserWord> getReviewWordResult = ruis.getReviewWord(st.getId(), st.getGrade());
 					noos.writeObject(getReviewWordResult);
 					break;
 				case "reviewui.sendreviewword":
-					ruism.saveReviewWord((HashSet<Integer>)content);
+					ruis.saveReviewWord((HashSet<Integer>)content, st.getId());
 					noos.writeObject(null);
 					break;
 				case "minigameui.getgamewordlist":
