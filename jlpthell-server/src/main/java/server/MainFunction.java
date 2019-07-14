@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
-import server.manager.MiniGameUIServerManager;
 import server.service.*;
 import vo.User;
 import vo.UserForList;
@@ -33,7 +32,7 @@ public class MainFunction implements Runnable {
 	@Autowired private HistoryUIService huis;
 	@Autowired private MemUIService muis;
 	@Autowired private ReviewUIService ruis;
-	@Autowired private MiniGameUIServerManager miniuism;
+	@Autowired private MiniGameUIService miniuis;
 	
 	
 	public MainFunction(Socket s, ServerThread st) {
@@ -134,7 +133,7 @@ public class MainFunction implements Runnable {
 					noos.writeObject(null);
 					break;
 				case "minigameui.getgamewordlist":
-					ArrayList<UserWord> getGameWordListResult = miniuism.getGameWordList(st.getId(), st.getGrade());
+					List<UserWord> getGameWordListResult = miniuis.getGameWordList(st.getId());
 					noos.writeObject(getGameWordListResult);
 					break;
 				}
