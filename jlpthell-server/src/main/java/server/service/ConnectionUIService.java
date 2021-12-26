@@ -32,7 +32,7 @@ public class ConnectionUIService {
 	public String login(String[] loginInfo) {
 		String userId = loginInfo[0];
 		String userPw = loginInfo[1];
-		UserInfo userInfo = userInfoDao.findUser(new UserInfo(userId, userPw));
+		UserInfo userInfo = userInfoDao.findUserByUseridAndUserpw(new UserInfo(userId, userPw));
 		return userInfo.getGrade();
 	}
 	

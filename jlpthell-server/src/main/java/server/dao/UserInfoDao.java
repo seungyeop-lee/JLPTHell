@@ -6,6 +6,7 @@ import server.dto.UserInfo;
 
 public interface UserInfoDao {
 	UserInfo findUser(UserInfo userInfo);
+	UserInfo findUserByUseridAndUserpw(UserInfo userInfo);
 	int addUser(UserInfo userInfo);
 	int updateUser(UserInfo userInfo);
 	int deleteUser(UserInfo userInfo);

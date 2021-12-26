@@ -73,21 +73,21 @@ public class ConnectionUIServiceTest {
 
 	@Test
 	public void loginNotExistUser() {
-		when(dao.findUser(new UserInfo(userid, userpw))).thenReturn(new UserInfo());
+		when(dao.findUserByUseridAndUserpw(new UserInfo(userid, userpw))).thenReturn(new UserInfo());
 		
 		String result = service.login(new String[] {userid, userpw});
 		
-		verify(dao, times(1)).findUser(Mockito.any());
+		verify(dao, times(1)).findUserByUseridAndUserpw(Mockito.any());
 		assertThat(result, nullValue());
 	}
 	
 	@Test
-	public void logintExistUser() {
-		when(dao.findUser(new UserInfo(userid, userpw))).thenReturn(userInfo);
+	public void loginExistUser() {
+		when(dao.findUserByUseridAndUserpw(new UserInfo(userid, userpw))).thenReturn(userInfo);
 		
 		String result = service.login(new String[] {userid, userpw});
 		
-		verify(dao, times(1)).findUser(Mockito.any());
+		verify(dao, times(1)).findUserByUseridAndUserpw(Mockito.any());
 		assertThat(result, is(userInfo.getGrade()));
 	}
 

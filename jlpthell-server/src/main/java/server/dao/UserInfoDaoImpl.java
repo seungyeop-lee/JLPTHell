@@ -45,6 +45,17 @@ public class UserInfoDaoImpl implements UserInfoDao {
 	}
 
 	@Override
+	public UserInfo findUserByUseridAndUserpw(UserInfo userInfo) {
+		String sql = "select * from userinfo where userid = ? and userpw = ?";
+
+		try {
+			return jdbcTemplate.queryForObject(sql, mapper, userInfo.getUserid(), userInfo.getUserpw());
+		} catch (EmptyResultDataAccessException e) {
+			return new UserInfo();
+		}
+	}
+
+	@Override
 	public int addUser(UserInfo userInfo) {
 		String sql = "insert into userinfo(userid,userpw,pwhint,grade,insertdate,USERNO) " +
 				"values(?,?,?,?,sysdate,SEQ_USERNO.NEXTVAL)";

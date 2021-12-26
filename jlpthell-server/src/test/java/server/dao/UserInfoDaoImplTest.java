@@ -45,6 +45,25 @@ public class UserInfoDaoImplTest {
         UserInfo findUser2 = dao.findUser(new UserInfo("id1"));
         checkSameUser(findUser2, u1);
     }
+
+    @Test
+    public void findUserByUseridAndUserpw() {
+        UserInfo findUser1 = dao.findUserByUseridAndUserpw(new UserInfo("id1", "pw1"));
+        checkSameUser(findUser1, new UserInfo());
+
+        dao.addUser(u1);
+        dao.addUser(u2);
+        assertThat(dao.findAll().size(), is(2));
+
+        UserInfo findUser2 = dao.findUserByUseridAndUserpw(new UserInfo("id1"));
+        checkSameUser(findUser2, new UserInfo());
+
+        UserInfo findUser3 = dao.findUserByUseridAndUserpw(new UserInfo("id1", "invalid"));
+        checkSameUser(findUser3, new UserInfo());
+
+        UserInfo findUser4 = dao.findUserByUseridAndUserpw(new UserInfo("id1", "pw1"));
+        checkSameUser(findUser4, u1);
+    }
     
     @Test
     public void addUser() {
